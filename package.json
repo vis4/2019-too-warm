@@ -1,0 +1,72 @@
+{
+    "name": "svelte-app",
+    "version": "1.0.0",
+    "scripts": {
+        "format": "prettier 'src/**/*.{js,svelte}' --write",
+        "lint": "prettier --check 'src/**/*.{js,svelte}' && healthier 'src/**/*.{js,svelte}'",
+        "build": "rollup -c",
+        "dev": "rollup -c -w",
+        "start": "sirv public"
+    },
+    "dependencies": {
+        "d3-array": "^2.4.0",
+        "d3-fetch": "^1.1.2",
+        "d3-scale": "^3.2.1",
+        "d3-selection": "^1.4.1",
+        "d3-shape": "^1.3.7",
+        "d3-time": "^1.1.0",
+        "sirv-cli": "^0.4.4"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^11.0.0",
+        "@rollup/plugin-node-resolve": "^6.0.0",
+        "@tivac/eslint-plugin-svelte": "^1.3.0",
+        "babel-eslint": "^10.0.3",
+        "eslint-plugin-html": "^6.0.0",
+        "healthier": "^3.2.0",
+        "prettier": "^1.19.1",
+        "prettier-plugin-svelte": "^0.7.0",
+        "rollup": "^1.20.0",
+        "rollup-plugin-livereload": "^1.0.0",
+        "rollup-plugin-svelte": "^5.0.3",
+        "rollup-plugin-terser": "^5.1.2",
+        "svelte": "^3.0.0"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "semi": true,
+        "printWidth": 100,
+        "singleQuote": true
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "env": {
+            "es6": true
+        },
+        "rules": {
+            "no-console": [
+                "error",
+                {
+                    "allow": [
+                        "warn",
+                        "error"
+                    ]
+                }
+            ],
+            "camelcase": [
+                "warn",
+                {
+                    "ignoreDestructuring": true,
+                    "properties": "never"
+                }
+            ]
+        },
+        "extends": [
+            "plugin:@tivac/svelte/svelte"
+        ],
+        "plugins": [
+            "html",
+            "@tivac/svelte"
+        ]
+    }
+}

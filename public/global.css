@@ -1,0 +1,143 @@
+html, body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    color: #333;
+    margin: 0;
+    background: #eee;
+    padding: 8px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+a {
+    color: #c30;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #8f2603;
+}
+
+
+/** bootstrap overrides **/
+.form-text {
+    margin-top: 0;
+    margin-bottom: 3px;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color:#c30;
+    background-color:#c30;
+}
+
+main.story, header.story {
+    max-width: 45rem;
+    font-size: 18px;
+    margin: 0 auto;
+}
+
+.story p {
+    font-size: 18px;
+    line-height: 1.725;
+}
+
+
+
+@media (min-device-width: 600px) {
+    .only-mobile {
+        display: none;
+    }
+}
+
+@media (max-device-width: 600px) {
+    .only-desktop {
+        display: none;
+    }
+    .story p {
+        font-size: 17px;
+        line-height: 1.6;
+    }
+}
+
+main.full-width {
+    padding: 1em;
+    margin: 0 auto;
+}
+
+main[lang="de"] *[lang="en"] {
+    display: none;
+}
+
+main[lang="en"] *[lang="de"] {
+    display: none;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.story p.text-small {
+    font-size: 14.5px;
+    line-height: 22px;
+}
+
+.story h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: none;
+    font-size: 1.5em;
+    line-height: 1.25;
+    font-style: normal;
+    font-weight: 700;
+    color: #c30;
+    margin-bottom: 1rem;
+}
+
+header.story {
+    margin-top: 4rem;
+    margin-bottom: 3rem!important;
+}
+
+header h1 {
+    letter-spacing: 0.01em;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    display: inline-block;
+}
+header h1 a {
+    color: #333!important;
+}
+header #logo {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    filter: grayscale(100%);
+    background: #fff;
+    border-radius: 2px;
+    font-size: 23px;
+    text-align: center;
+    line-height: 45px;
+}
+
+header #logo {
+line-height: 45px;
+}
+
+header.story p {
+    max-width: 40rem;
+    font-size: 0.8rem;
+    color: #555;
+}
