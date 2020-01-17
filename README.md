@@ -2,21 +2,12 @@
 
 This repo contains the sources for this article https://www.vis4.net/blog/2020/01/2019-too-warm/ 
 
-`r-work` contains the R scripts I used to download and clean the raw data from DWD. 
-
-To update the data run
-
-```bash
-cd r-work/
-Rscript update.R
-```
-
-`app` contains the Svelte web app and the charts.
+The scraper that downloads the data now lives at https://github.com/vis4/dwd-scraper
 
 This is how you can run the app locally
 
 ```bash
-cd app/
+npm install
 npm run dev
 ```
 
