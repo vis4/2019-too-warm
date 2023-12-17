@@ -2,7 +2,7 @@
     import { csv } from 'd3-fetch';
     import { timeFormat } from 'd3-time-format';
 
-    import { beforeUpdate } from 'svelte';
+    import { beforeUpdate, onMount } from 'svelte';
     import {
         maxDate,
         msg,
@@ -25,6 +25,10 @@
 
     let data;
 
+    $: console.log({data})
+
+    onMount(() => load())
+
     $: stationShort = station ? station.name : '...';
 
     const parseRow = d => ({
@@ -39,11 +43,13 @@
 
     let promise;
     const load = () => {
+        console.log('loading data', station);
         if (!station) return;
         promise = csv(
             `/blog/interactives/2019-too-warm/data/stations/${station.id}.csv`,
             parseRow
         ).then(res => {
+            console.log('data loaded', res);
             data = res;
             return data;
         });
@@ -51,7 +57,7 @@
 
     let _station;
     let _lang;
-    let station;
+    let station = { id: '00430', from: new Date(1960,0,1)};
     let stations = [];
 
     $: dailyMaxDec18 = data ? data.find(d => d.dateRaw === '2019-12-18').tMax : '...';
@@ -81,10 +87,24 @@
         --hotter-color: #d00;
         --normal-color: #777;
         --colder-color: #09d;
+        --context-color: #bbb;
+        --white: #fff;
         --def-color: #c30;
         --tick-line: #d0d2d5;
         --tick: #6c757d;
         --bg: #eeeeee;
+    }
+
+    :global(.is-dark) main {
+        --hotter-color: #e44d4d;
+        --normal-color: #ccc;
+        --colder-color: #09d;
+        --white: #0f0e13;
+        --context-color: #777;
+        --def-color: #c30;
+        --tick-line: #403f4a;
+        --tick: #6c757d;
+        --bg: #1c1b22;
     }
 
     @media (max-width: 400px) {
@@ -135,11 +155,11 @@
 <main lang={$language} class="story px2">
 
     <p class="p-2 text-center text-muted text-small" lang="de">
-        <a class="text-reset" href="#/en">Read this text in English</a>
+        <a class="text-reset" href="#/en" on:click|preventDefault={() => $language = 'en'}>Read this text in English</a>
         <br />
     </p>
     <p class="p-2 text-center text-muted text-small" lang="en">
-        <a class="text-reset" href="#/de">Diesen Text auf deutsch lesen</a>
+        <a class="text-reset" href="#/de" on:click|preventDefault={() => $language = 'de'}>Diesen Text auf deutsch lesen</a>
         <br />
         <a
             class="text-reset"
@@ -277,7 +297,7 @@
                 {@html loading}
             </p>
         {:then data}
-            <DataLoaded {data} {station} />
+            <DataLoaded {data} />
         {:catch error}
             <!-- promise was rejected -->
             <p>Something went wrong: {error.message}</p>
@@ -285,7 +305,7 @@
     {/if}
     <div class="row">
         <div class="col-md">
-            <TimeSelect />
+            <!-- <TimeSelect /> -->
         </div>
         <div class="col-md-auto">
             <img
@@ -425,9 +445,9 @@
         in all other German weather stations. You can use the form below to change to any of the {stations.length}
         stations in Germany that collected daily temperature data between at least 1980 and 2019.
     </p>
-    <div class="shadow-sm p-3 mb-5 bg-white rounded" style="max-width: 30rem">
+    <!-- <div class="shadow-sm p-3 mb-5 bg-white rounded" style="max-width: 30rem">
         <StationSelect bind:station bind:stations />
-    </div>
+    </div> -->
     <h2 lang="de">Quellenangabe</h2>
     <h2 lang="en">Sources</h2>
     <p lang="de">

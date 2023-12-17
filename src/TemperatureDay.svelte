@@ -114,7 +114,7 @@
     }
 
     .tick text {
-        fill: #666;
+        fill: var(--tick);
         font-weight: 500;
         font-size: 14px;
         text-anchor: start;
@@ -127,7 +127,7 @@
 
     line.zero {
         stroke-width: 2;
-        stroke: black;
+        stroke: currentColor;
         stroke-dasharray: 3, 3;
         opacity: 0.5;
     }
@@ -149,16 +149,17 @@
         shape-rendering: crispEdges;
     }
     .day.reference line {
-        stroke: #000;
+        stroke: currentColor;
     }
     .context {
         cursor: grab;
     }
     .context rect {
-        fill: white;
+        fill: var(--white);
         opacity: 0.5;
     }
     .context text {
+        fill: var(--tick);
         pointer-events: none;
         text-anchor: middle;
         font-size: 14px;

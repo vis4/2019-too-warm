@@ -1,5 +1,5 @@
 <script>
-    import { clientPoint } from 'd3-selection';
+    import { clientPoint } from '../utils.js';
     import { timeFormat } from 'd3-time-format';
     import { timeDay } from 'd3-time';
     import {

@@ -28,7 +28,7 @@ export const minDate = derived([maxDate, chartWidth, showDays], ([$a, $cw, $show
     return new Date($a.getTime() - days * 864e5);
 });
 
-export const language = writable('de');
+export const language = writable('en');
 
 export const showAnomalies = writable(true);
 export const labelRecordTemperatures = writable(true);

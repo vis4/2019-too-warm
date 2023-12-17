@@ -35,7 +35,7 @@
         hashChange();
         if (!station) {
             // try to get location from user
-            findNearestStation();
+            // findNearestStation();
 
             // pick random station
             const initStations = [
@@ -58,28 +58,28 @@
         }
     });
 
-    $: {
-        if (station && station.name) {
-            const hashParts = [$language];
-            if (userSelectedStation) {
-                hashParts.push(station.id);
-                hashParts.push(
-                    station.name
-                        .toLowerCase()
-                        .split('(')[0]
-                        .trim()
-                        .replace(/ö/g, 'oe')
-                        .replace(/ä/g, 'ae')
-                        .replace(/ü/g, 'ue')
-                        .replace(/[^a-z-]/g, '')
-                );
-            }
-            if (tfmt($maxDate) < tfmt(new Date())) {
-                hashParts.push(tfmt($maxDate));
-            }
-            window.location.hash = `#/${hashParts.join('/')}`;
-        }
-    }
+    // $: {
+    //     if (station && station.name) {
+    //         const hashParts = [$language];
+    //         if (userSelectedStation) {
+    //             hashParts.push(station.id);
+    //             hashParts.push(
+    //                 station.name
+    //                     .toLowerCase()
+    //                     .split('(')[0]
+    //                     .trim()
+    //                     .replace(/ö/g, 'oe')
+    //                     .replace(/ä/g, 'ae')
+    //                     .replace(/ü/g, 'ue')
+    //                     .replace(/[^a-z-]/g, '')
+    //             );
+    //         }
+    //         if (tfmt($maxDate) < tfmt(new Date())) {
+    //             hashParts.push(tfmt($maxDate));
+    //         }
+    //         window.location.hash = `#/${hashParts.join('/')}`;
+    //     }
+    // }
 
     function hashChange() {
         const match = window.location.hash.match(
@@ -112,18 +112,18 @@
     }
 
     function findNearestStation(event) {
-        navigator.geolocation.getCurrentPosition(
-            position => {
-                const { latitude, longitude } = position.coords;
-                // compute distances
-                stations.forEach(s => {
-                    s.dist = latLonDist(latitude, longitude, s.lat, s.lon);
-                });
-                userSelectedStation = !!event;
-                station = stations.sort((a, b) => a.dist - b.dist)[0];
-            },
-            () => {}
-        );
+        // navigator.geolocation.getCurrentPosition(
+        //     position => {
+        //         const { latitude, longitude } = position.coords;
+        //         // compute distances
+        //         stations.forEach(s => {
+        //             s.dist = latLonDist(latitude, longitude, s.lat, s.lon);
+        //         });
+        //         userSelectedStation = !!event;
+        //         station = stations.sort((a, b) => a.dist - b.dist)[0];
+        //     },
+        //     () => {}
+        // );
     }
 </script>
 
@@ -138,7 +138,7 @@
     }
 </style>
 
-<svelte:window on:hashchange={() => hashChange(false)} />
+<!-- <svelte:window on:hashchange={() => hashChange(false)} /> -->
 
 {#await loadStations then res}
     <label class="form-text">{$msg.selectStation.replace('%count%', stations.length)}</label>
